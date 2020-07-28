@@ -21,6 +21,14 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
@@ -102,7 +110,7 @@
 	                <span class="number" data-number="40">0</span>
 	                <span>Project complete</span>
                 </p>
-                <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+                <p><a href="Gabriel Alejandro Cascallares.pdf" class="btn btn-primary py-3 px-3" download="Gabriel Alejandro Cascallares.pdf">Download CV</a></p>
               </div>
 	          </div>
 	        </div>
@@ -233,97 +241,205 @@
 					  <div id="page-3" class= "page three">
 					  	<h2 class="heading">Skills</h2>
 					  	<div class="row progress-circle mb-5">
-					  		<div class="col-lg-4 mb-4">
-						      <div class="bg-white rounded-lg shadow p-4">
-						        <h2 class="h5 font-weight-bold text-center mb-4">.NET</h2>
+					  		<div class="col-lg-12 mb-12">
+					   <figure class="highcharts-figure">
+    						<div id="container"></div>
+    						<p class="highcharts-description">
+    						</p>
+						</figure>
+<script type="text/javascript">
+	// Uncomment to style it like Apple Watch
 
-						        <!-- Progress bar 1 -->
-						        <div class="progress mx-auto" data-value='90'>
-						          <span class="progress-left">
-                        <span class="progress-bar border-primary"></span>
-						          </span>
-						          <span class="progress-right">
-                        <span class="progress-bar border-primary"></span>
-						          </span>
-						          <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-						            <div class="h2 font-weight-bold">90<sup class="small">%</sup></div>
-						          </div>
-						        </div>
-						        <!-- END -->
+if (!Highcharts.theme) {
+    Highcharts.setOptions({
+        chart: {
+            backgroundColor: 'white'
+        },
+        colors: ['#19d0df', '#11919C', '#0C686F'],
+        title: {
+            style: {
+                color: 'black'
+            }
+        },
+        tooltip: {
+            style: {
+                color: 'black'
+            }
+        }
+    });
+}
+// */
 
-						        <!-- Demo info -->
-						        <div class="row text-center mt-4">
-						          <div class="col-6 border-right">
-						            <div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
-						          </div>
-						          <div class="col-6">
-						            <div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
-						          </div>
-						        </div>
-						        <!-- END -->
-						      </div>
-						    </div>
+/**
+ * In the chart render event, add icons on top of the circular shapes
+ */
+function renderIcons() {
 
-						    <div class="col-lg-4 mb-4">
-						      <div class="bg-white rounded-lg shadow p-4">
-						        <h2 class="h5 font-weight-bold text-center mb-4">SqlServer</h2>
+    // Move icon
+    if (!this.series[0].icon) {
+        this.series[0].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+            .attr({
+                stroke: '#303030',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                zIndex: 10
+            })
+            .add(this.series[2].group);
+    }
+    this.series[0].icon.translate(
+        this.chartWidth / 2 - 10,
+        this.plotHeight / 2 - this.series[0].points[0].shapeArgs.innerR -
+            (this.series[0].points[0].shapeArgs.r - this.series[0].points[0].shapeArgs.innerR) / 2
+    );
 
-						        <!-- Progress bar 1 -->
-						        <div class="progress mx-auto" data-value='80'>
-						          <span class="progress-left">
-                        <span class="progress-bar border-primary"></span>
-						          </span>
-						          <span class="progress-right">
-                        <span class="progress-bar border-primary"></span>
-						          </span>
-						          <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-						            <div class="h2 font-weight-bold">80<sup class="small">%</sup></div>
-						          </div>
-						        </div>
-						        <!-- END -->
+    // Exercise icon
+    if (!this.series[1].icon) {
+        this.series[1].icon = this.renderer.path(
+            ['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8,
+                'M', 8, -8, 'L', 16, 0, 8, 8]
+        )
+            .attr({
+                stroke: '#ffffff',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                zIndex: 10
+            })
+            .add(this.series[2].group);
+    }
+    this.series[1].icon.translate(
+        this.chartWidth / 2 - 10,
+        this.plotHeight / 2 - this.series[1].points[0].shapeArgs.innerR -
+            (this.series[1].points[0].shapeArgs.r - this.series[1].points[0].shapeArgs.innerR) / 2
+    );
 
-						        <!-- Demo info -->
-						        <div class="row text-center mt-4">
-						          <div class="col-6 border-right">
-						            <div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
-						          </div>
-						          <div class="col-6">
-						            <div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
-						          </div>
-						        </div>
-						        <!-- END -->
-						      </div>
-						    </div>
+    // Stand icon
+    if (!this.series[2].icon) {
+        this.series[2].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
+            .attr({
+                stroke: '#303030',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                zIndex: 10
+            })
+            .add(this.series[2].group);
+    }
 
-						    <div class="col-lg-4 mb-4">
-						      <div class="bg-white rounded-lg shadow p-4">
-						        <h2 class="h5 font-weight-bold text-center mb-4">jQuery</h2>
+    this.series[2].icon.translate(
+        this.chartWidth / 2 - 10,
+        this.plotHeight / 2 - this.series[2].points[0].shapeArgs.innerR -
+            (this.series[2].points[0].shapeArgs.r - this.series[2].points[0].shapeArgs.innerR) / 2
+    );
+}
 
-						        <!-- Progress bar 1 -->
-						        <div class="progress mx-auto" data-value='75'>
-						          <span class="progress-left">
-                        <span class="progress-bar border-primary"></span>
-						          </span>
-						          <span class="progress-right">
-                        <span class="progress-bar border-primary"></span>
-						          </span>
-						          <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-						            <div class="h2 font-weight-bold">60<sup class="small">%</sup></div>
-						          </div>
-						        </div>
-						        <!-- END -->
+Highcharts.chart('container', {
 
-						        <!-- Demo info -->
-						        <div class="row text-center mt-4">
-						          <div class="col-6 border-right">
-						            <div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
-						          </div>
-						          <div class="col-6">
-						            <div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
-						          </div>
-						        </div>
-						        <!-- END -->
-						      </div>
+    chart: {
+        type: 'solidgauge',
+        height: '110%',
+        events: {
+            render: renderIcons
+        }
+    },
+
+    title: {
+        text: 'Main skill',
+        style: {
+            fontSize: '24px'
+        }
+    },
+
+    tooltip: {
+        borderWidth: 0,
+        backgroundColor: 'none',
+        shadow: false,
+        style: {
+            fontSize: '16px'
+        },
+        valueSuffix: '%',
+        pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
+        positioner: function (labelWidth) {
+            return {
+                x: (this.chart.chartWidth - labelWidth) / 2,
+                y: (this.chart.plotHeight / 2) + 15
+            };
+        }
+    },
+
+    pane: {
+        startAngle: 0,
+        endAngle: 360,
+        background: [{ // Track for Move
+            outerRadius: '112%',
+            innerRadius: '88%',
+            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[0])
+                .setOpacity(0.3)
+                .get(),
+            borderWidth: 0
+        }, { // Track for Exercise
+            outerRadius: '87%',
+            innerRadius: '63%',
+            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[1])
+                .setOpacity(0.3)
+                .get(),
+            borderWidth: 0
+        }, { // Track for Stand
+            outerRadius: '62%',
+            innerRadius: '38%',
+            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[2])
+                .setOpacity(0.3)
+                .get(),
+            borderWidth: 0
+        }]
+    },
+
+    yAxis: {
+        min: 0,
+        max: 100,
+        lineWidth: 0,
+        tickPositions: []
+    },
+
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                enabled: false
+            },
+            linecap: 'round',
+            stickyTracking: false,
+            rounded: true
+        }
+    },
+
+    series: [{
+        name: '.NET',
+        data: [{
+            color: Highcharts.getOptions().colors[0],
+            radius: '112%',
+            innerRadius: '88%',
+            y: 90
+        }]
+    }, {
+        name: 'SQLServer',
+        data: [{
+            color: Highcharts.getOptions().colors[1],
+            radius: '87%',
+            innerRadius: '63%',
+            y: 80
+        }]
+    }, {
+        name: 'jquery',
+        data: [{
+            color: Highcharts.getOptions().colors[2],
+            radius: '62%',
+            innerRadius: '38%',
+            y: 60
+        }]
+    }]
+});
+</script>
 						    </div>
 					  	</div>
 					  	<div class="row">
@@ -598,7 +714,7 @@
           		</div>
           		<div>
 	          		<h3 class="mb-4">Contact Number</h3>
-		            <p><a href="tel://1234567920">+54 11 5850 9535</a></p>
+		            <p><a href="tel://1158509535">+54 11 5850 9535</a></p>
 	            </div>
 	          </div>
           </div>
@@ -609,7 +725,7 @@
           		</div>
           		<div>
 	          		<h3 class="mb-4">Email Address</h3>
-		            <p><a href="mailto:info@yoursite.com">gcascallares@outlook.com</a></p>
+		            <p><a href="mailto:gcascallares@outlook.com">gcascallares@outlook.com</a></p>
 		          </div>
 	          </div>
           </div>
@@ -620,36 +736,9 @@
           		</div>
           		<div>
 	          		<h3 class="mb-4">Website</h3>
-		            <p><a href="#">yoursite.com</a></p>
+		            <p><a href="https://gcascallares.github.io/CvOnline/">Click Here</a></p>
 	            </div>
 	          </div>
-          </div>
-        </div>
-
-        <div class="row no-gutters block-9">
-          <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-light p-4 p-md-5 contact-form">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
-              </div>
-              <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-              </div>
-            </form>
-          
-          </div>
-
-          <div class="col-md-6 d-flex">
-          	<div class="img" style="background-image: url(images/about.jpg);"></div>
           </div>
         </div>
       </div>
@@ -666,7 +755,7 @@
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                 <li class="ftco-animate"><a href="https://github.com/gcascallares"><span class="icon-github"></span></a></li>
                 <li class="ftco-animate"><a href="https://linkedin.com/in/gabriel-alejandro-cascallares-364395192"><span class="icon-linkedin"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                <!--<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>-->
               </ul>
             </div>
           </div>
